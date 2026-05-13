@@ -1,0 +1,415 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="SPIKE: An Adaptive Dual Controller Framework for Cost-Efficient Long-Horizon Game Agents.">
+  <meta name="keywords" content="Game Agents, Long-Horizon Control, Benchmark, Multimodal Agents">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SPIKE: An Adaptive Dual Controller Framework for Cost-Efficient Long-Horizon Game Agents</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/styles.css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <script defer src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            <span class="title-lockup">
+              <img class="title-logo" src="./static/images/logo.png" alt="SPIKE logo">
+              <span>SPIKE</span>
+            </span>
+          </h1>
+          <h2 class="title is-3 publication-subtitle">An Adaptive Dual Controller Framework for Cost-Efficient Long-Horizon Game Agents</h2>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://openreview.net/profile?id=~Wencan_Jiang1">Wencan Jiang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://zhangzjn.github.io/">Jiangning Zhang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://jianbiaomei.github.io/">Jianbiao Mei</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://github.com/Eddie0521">Jinzhuo Liu</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://yuyang-cloud.github.io/">Yu Yang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=3lMuodUAAAAJ&amp;hl=th">Xiaobin Hu</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=zh-CN&amp;user=m3KDreEAAAAJ">Zhucun Xue</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://person.zju.edu.cn/en/yongliu">Yong Liu</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://dr.ntu.edu.sg/cris/rp/rp02343">Dacheng Tao</a><sup>3</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors publication-affiliations">
+            <span class="author-block"><sup>1</sup>Zhejiang University,</span>
+            <span class="author-block"><sup>2</sup>National University of Singapore,</span>
+            <span class="author-block"><sup>3</sup>Nanyang Technological University</span>
+          </div>
+
+          <div class="column has-text-centered publication-links-column">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="./static/paper/SPIKE-paper.pdf" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark disabled-link" aria-disabled="true">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark disabled-link" aria-disabled="true">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-11">
+          <h3 class="title is-3">Highlights</h3>
+          <div class="content overview-text">
+            <ol class="highlights-list">
+              <li><strong>Event-triggered amortized deliberation.</strong> Strategic reasoning is reused across stable local segments and reinvoked at visual, progress, repetition, or failure boundaries.</li>
+              <li><strong>Adaptive dual-controller execution.</strong> A Strategic Controller handles planning and recovery, while a bounded Reactive Controller performs fast local execution and local override.</li>
+              <li><strong>Controller-specific hierarchical memory.</strong> SPIKE separates State-Action Memory Bank retrieval for routine execution from State-Action Knowledge Graph evidence for replanning.</li>
+              <li><strong>Better success-cost trade-off.</strong> On StarDojo Lite-100, SPIKE improves success over the strongest baseline while reducing tokens and latency.</li>
+            </ol>
+          </div>
+          <div class="intro-figure-wrap">
+            <img class="intro-figure" src="./static/images/teaser.png" alt="SPIKE teaser">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small" id="method">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mathvista_other"><span class="mathvista_other">SPIKE Framework</span></h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-11 content">
+        <p class="section-lead">
+          SPIKE treats strategic reasoning as a budgeted resource. The Event Trigger decides when to deliberate, the Strategic Controller handles planning and recovery, the Reactive Controller executes low-cost local actions, and Hierarchical Memory retrieves controller-specific evidence.
+        </p>
+
+        <figure class="method-figure architecture-figure">
+          <div class="intro-figure-wrap">
+            <img class="intro-figure method-figure-image method-figure-large" src="./static/images/architecture.png" alt="SPIKE architecture">
+          </div>
+          <figcaption>SPIKE uses event-triggered switching to reserve strategic deliberation for discontinuities while reactive execution handles stable local progress.</figcaption>
+        </figure>
+
+        <figure class="method-figure">
+          <div class="intro-figure-wrap">
+            <img class="intro-figure method-figure-image" src="./static/images/workflow.png" alt="Strategic Controller workflow">
+          </div>
+          <figcaption>When escalation is triggered, the Strategic Controller gathers state evidence, retrieves memory, reasons over subtasks, and proposes the next actions.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small" id="experiments">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mathvista_other"><span class="mathvista_other">Experiments</span></h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-11 content has-text-centered">
+        <h3 class="title is-3">Experimental Setup</h3>
+        <div class="has-text-left experimental-setup">
+          <div class="setup-primary">
+            <h4 class="title is-4">StarDojo Lite-100</h4>
+            <p>
+              Lite-100 is the main evaluation split. It contains 100 long-horizon tasks from StarDojo across farming, crafting, exploration, combat, and social interaction, with a fixed difficulty split of 56 easy, 23 medium, and 21 hard tasks.
+            </p>
+            <p>
+              We use it to measure both task success and cost-aware behavior: Lite-100 SR follows the benchmark step-cap protocol, while Budgeted SR uses matched LLM-call budgets for easy, medium, and hard tasks. We also report tokens per task, latency per step, and Recovery/Stuck Ratio to evaluate whether SPIKE improves success without simply spending more compute.
+            </p>
+            <div class="setup-stats">
+              <div><strong>100</strong><span>tasks</span></div>
+              <div><strong>5</strong><span>task families</span></div>
+              <div><strong>3</strong><span>repeated runs</span></div>
+            </div>
+            <div class="table-scroll">
+              <table class="setup-table">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Total</th>
+                    <th>Easy</th>
+                    <th>Medium</th>
+                    <th>Hard</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Farming</td><td>21</td><td>14</td><td>3</td><td>4</td></tr>
+                  <tr><td>Crafting</td><td>14</td><td>7</td><td>4</td><td>3</td></tr>
+                  <tr><td>Exploration</td><td>28</td><td>15</td><td>8</td><td>5</td></tr>
+                  <tr><td>Combat</td><td>12</td><td>3</td><td>6</td><td>3</td></tr>
+                  <tr><td>Social</td><td>25</td><td>17</td><td>6</td><td>2</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="setup-secondary">
+            <h4 class="title is-4">RDR2 Transfer</h4>
+            <p>
+              RDR2 is used as a secondary cross-game transfer test. It keeps the same adaptive dual-controller design, but changes the visual domain, action space, interaction pace, and task language.
+            </p>
+            <ul>
+              <li>13 selected long-horizon tasks</li>
+              <li>Three repeated runs per task</li>
+              <li>Navigation, search, following, protection, and combat-like objectives</li>
+              <li>Shared protocol across all compared methods</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="title is-3" style="margin-top: 2.5rem;">Main Results</h3>
+        <div class="figure-grid main-results-grid">
+          <figure>
+            <img src="./static/images/pareto_tradeoff.png" alt="Pareto trade-off">
+            <figcaption>Effectiveness-efficiency trade-off on Lite-100, showing that SPIKE improves success while using fewer tokens and lower latency than high-cost baselines.</figcaption>
+          </figure>
+          <figure>
+            <img src="./static/images/mechanistic_analysis.png" alt="Mechanistic analysis">
+            <figcaption>Mechanistic analysis showing how controller allocation and hierarchical memory contribute to recovery, efficiency, and sustained task progress.</figcaption>
+          </figure>
+        </div>
+
+        <figure style="margin-top: 2rem;">
+          <img src="./static/images/qualitative_analysis.png" alt="Qualitative analysis">
+          <figcaption>Qualitative comparison of goal-reaching behavior, illustrating how SPIKE maintains progress over long-horizon interaction traces.</figcaption>
+        </figure>
+
+        <div class="figure-grid demo-grid" style="margin-top: 2rem;">
+          <figure>
+            <img src="./static/images/demo1.png" alt="Demo 1">
+            <figcaption>Representative successful trajectory under SPIKE.</figcaption>
+          </figure>
+          <figure>
+            <img src="./static/images/demo2.png" alt="Demo 2">
+            <figcaption>Additional qualitative rollout showing long-horizon progress.</figcaption>
+          </figure>
+          <figure class="demo-wide">
+            <img src="./static/images/failure_demo.png" alt="Failure demo">
+            <figcaption>Failure and recovery trace highlighting how SPIKE detects stagnation and replans.</figcaption>
+          </figure>
+        </div>
+
+        <h3 class="title is-3" style="margin-top: 3rem;">Main Result</h3>
+        <p class="section-lead">
+          Main comparison on StarDojo Lite-100 and cross-game transfer on Red Dead Redemption 2. Higher SR is better; lower token use and latency indicate better efficiency.
+        </p>
+
+        <h4 class="title is-4">StarDojo Lite-100</h4>
+        <div class="leaderboard-container">
+          <table class="js-sort-table leaderboard-table" id="results-lite100" data-default-sort="2">
+            <thead>
+              <tr>
+                <th class="no-sort" style="width: 50px;"><strong>#</strong></th>
+                <th class="no-sort" style="width: 220px;"><strong>Method</strong></th>
+                <th data-column-index="2">Lite-100 SR</th>
+                <th data-column-index="3">Budgeted SR</th>
+                <th data-column-index="4">Tokens / Task (k)</th>
+                <th data-column-index="5">Latency / Step (s)</th>
+                <th data-column-index="6">Recovery/Stuck Ratio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="ours">
+                <td>1</td><td>SPIKE (Default Qwen3.5-397B)</td><td><span class="pm-value"><span class="pm-left">18.0</span><span class="pm-symbol">±</span><span class="pm-right">1.7%</span></span></td><td><span class="pm-value"><span class="pm-left">21.6</span><span class="pm-symbol">±</span><span class="pm-right">1.7%</span></span></td><td><span class="pm-value"><span class="pm-left">168.1</span><span class="pm-symbol">±</span><span class="pm-right">5.7</span></span></td><td><span class="pm-value"><span class="pm-left">43.5</span><span class="pm-symbol">±</span><span class="pm-right">4.7</span></span></td><td><span class="pm-value"><span class="pm-left">2.75</span><span class="pm-symbol">±</span><span class="pm-right">0.12</span></span></td>
+              </tr>
+              <tr>
+                <td>2</td><td>CRADLE</td><td><span class="pm-value"><span class="pm-left">13.0</span><span class="pm-symbol">±</span><span class="pm-right">1.7%</span></span></td><td><span class="pm-value"><span class="pm-left">10.7</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">372.5</span><span class="pm-symbol">±</span><span class="pm-right">8.8</span></span></td><td><span class="pm-value"><span class="pm-left">73.5</span><span class="pm-symbol">±</span><span class="pm-right">8.2</span></span></td><td><span class="pm-value"><span class="pm-left">2.49</span><span class="pm-symbol">±</span><span class="pm-right">0.18</span></span></td>
+              </tr>
+              <tr>
+                <td>3</td><td>StarDojo baseline</td><td><span class="pm-value"><span class="pm-left">12.3</span><span class="pm-symbol">±</span><span class="pm-right">1.4%</span></span></td><td><span class="pm-value"><span class="pm-left">12.3</span><span class="pm-symbol">±</span><span class="pm-right">1.4%</span></span></td><td><span class="pm-value"><span class="pm-left">295.9</span><span class="pm-symbol">±</span><span class="pm-right">8.4</span></span></td><td><span class="pm-value"><span class="pm-left">48.7</span><span class="pm-symbol">±</span><span class="pm-right">4.5</span></span></td><td><span class="pm-value"><span class="pm-left">2.37</span><span class="pm-symbol">±</span><span class="pm-right">0.18</span></span></td>
+              </tr>
+              <tr>
+                <td>4</td><td>Reflexion-like</td><td><span class="pm-value"><span class="pm-left">8.7</span><span class="pm-symbol">±</span><span class="pm-right">1.0%</span></span></td><td><span class="pm-value"><span class="pm-left">10.4</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">178.5</span><span class="pm-symbol">±</span><span class="pm-right">6.6</span></span></td><td><span class="pm-value"><span class="pm-left">35.9</span><span class="pm-symbol">±</span><span class="pm-right">3.8</span></span></td><td><span class="pm-value"><span class="pm-left">2.02</span><span class="pm-symbol">±</span><span class="pm-right">0.14</span></span></td>
+              </tr>
+              <tr>
+                <td>5</td><td>Voyager-like</td><td><span class="pm-value"><span class="pm-left">7.3</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">8.1</span><span class="pm-symbol">±</span><span class="pm-right">1.0%</span></span></td><td><span class="pm-value"><span class="pm-left">238.3</span><span class="pm-symbol">±</span><span class="pm-right">6.7</span></span></td><td><span class="pm-value"><span class="pm-left">56.5</span><span class="pm-symbol">±</span><span class="pm-right">6.0</span></span></td><td><span class="pm-value"><span class="pm-left">1.73</span><span class="pm-symbol">±</span><span class="pm-right">0.15</span></span></td>
+              </tr>
+              <tr>
+                <td>6</td><td>ReAct-like</td><td><span class="pm-value"><span class="pm-left">6.7</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">9.6</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">102.6</span><span class="pm-symbol">±</span><span class="pm-right">5.4</span></span></td><td><span class="pm-value"><span class="pm-left">24.5</span><span class="pm-symbol">±</span><span class="pm-right">3.2</span></span></td><td><span class="pm-value"><span class="pm-left">1.61</span><span class="pm-symbol">±</span><span class="pm-right">0.11</span></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 class="title is-4" style="margin-top: 2rem;">RDR2 Transfer</h4>
+        <div class="leaderboard-container">
+          <table class="js-sort-table leaderboard-table" id="results-rdr2" data-default-sort="2">
+            <thead>
+              <tr>
+                <th class="no-sort" style="width: 50px;"><strong>#</strong></th>
+                <th class="no-sort" style="width: 220px;"><strong>Method</strong></th>
+                <th data-column-index="2">SR</th>
+                <th data-column-index="3">Tokens / Step (k)</th>
+                <th data-column-index="4">Latency / Step (s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="ours">
+                <td>1</td><td>SPIKE</td><td><span class="pm-value"><span class="pm-left">56.4</span><span class="pm-symbol">±</span><span class="pm-right">7.7%</span></span></td><td><span class="pm-value"><span class="pm-left">3.4</span><span class="pm-symbol">±</span><span class="pm-right">0.7</span></span></td><td><span class="pm-value"><span class="pm-left">54.1</span><span class="pm-symbol">±</span><span class="pm-right">4.6</span></span></td>
+              </tr>
+              <tr>
+                <td>2</td><td>CRADLE</td><td><span class="pm-value"><span class="pm-left">43.6</span><span class="pm-symbol">±</span><span class="pm-right">7.7%</span></span></td><td><span class="pm-value"><span class="pm-left">6.6</span><span class="pm-symbol">±</span><span class="pm-right">0.8</span></span></td><td><span class="pm-value"><span class="pm-left">102.2</span><span class="pm-symbol">±</span><span class="pm-right">8.4</span></span></td>
+              </tr>
+              <tr>
+                <td>3</td><td>StarDojo baseline</td><td><span class="pm-value"><span class="pm-left">33.3</span><span class="pm-symbol">±</span><span class="pm-right">5.1%</span></span></td><td><span class="pm-value"><span class="pm-left">5.7</span><span class="pm-symbol">±</span><span class="pm-right">0.5</span></span></td><td><span class="pm-value"><span class="pm-left">67.5</span><span class="pm-symbol">±</span><span class="pm-right">4.1</span></span></td>
+              </tr>
+              <tr>
+                <td>4</td><td>Reflexion-like</td><td><span class="pm-value"><span class="pm-left">17.9</span><span class="pm-symbol">±</span><span class="pm-right">5.1%</span></span></td><td><span class="pm-value"><span class="pm-left">3.5</span><span class="pm-symbol">±</span><span class="pm-right">0.2</span></span></td><td><span class="pm-value"><span class="pm-left">41.4</span><span class="pm-symbol">±</span><span class="pm-right">3.6</span></span></td>
+              </tr>
+              <tr>
+                <td>5</td><td>ReAct-like</td><td><span class="pm-value"><span class="pm-left">15.4</span><span class="pm-symbol">±</span><span class="pm-right">2.6%</span></span></td><td><span class="pm-value"><span class="pm-left">2.1</span><span class="pm-symbol">±</span><span class="pm-right">0.2</span></span></td><td><span class="pm-value"><span class="pm-left">28.2</span><span class="pm-symbol">±</span><span class="pm-right">2.7</span></span></td>
+              </tr>
+              <tr>
+                <td>6</td><td>Voyager-like</td><td><span class="pm-value"><span class="pm-left">7.7</span><span class="pm-symbol">±</span><span class="pm-right">2.6%</span></span></td><td><span class="pm-value"><span class="pm-left">4.8</span><span class="pm-symbol">±</span><span class="pm-right">0.3</span></span></td><td><span class="pm-value"><span class="pm-left">72.4</span><span class="pm-symbol">±</span><span class="pm-right">3.9</span></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="metric-strip">
+          <div><strong>+5.0 pts</strong><span>Lite-100 SR over CRADLE</span></div>
+          <div><strong>+9.3 pts</strong><span>Budgeted SR over StarDojo baseline</span></div>
+          <div><strong>-54.9%</strong><span>Tokens versus CRADLE</span></div>
+          <div><strong>-40.8%</strong><span>Latency versus CRADLE</span></div>
+        </div>
+
+        <h3 class="title is-3" style="margin-top: 3rem;">Ablation Study</h3>
+        <p class="section-lead">
+          Framework-level and component ablations on Lite-100. Delta SR reports the absolute success-rate change relative to full SPIKE, isolating the effect of controller routing, event triggering, and memory design.
+        </p>
+        <div class="leaderboard-container">
+          <table class="leaderboard-table ablation-table">
+            <thead>
+              <tr>
+                <th>Variant</th>
+                <th>Lite-100 SR</th>
+                <th>Tokens / Task (k)</th>
+                <th>Latency / Step (s)</th>
+                <th>Recovery/Stuck Ratio</th>
+                <th>Delta SR</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-group-row">
+                <td colspan="6">Framework-level ladder</td>
+              </tr>
+              <tr class="ours">
+                <td>SPIKE (Full)</td><td><span class="pm-value"><span class="pm-left">18.0</span><span class="pm-symbol">±</span><span class="pm-right">1.7%</span></span></td><td><span class="pm-value"><span class="pm-left">168.1</span><span class="pm-symbol">±</span><span class="pm-right">5.7</span></span></td><td><span class="pm-value"><span class="pm-left">43.5</span><span class="pm-symbol">±</span><span class="pm-right">4.7</span></span></td><td><span class="pm-value"><span class="pm-left">2.75</span><span class="pm-symbol">±</span><span class="pm-right">0.12</span></span></td><td>0.0</td>
+              </tr>
+              <tr>
+                <td>Single Strategic Controller + Global Memory</td><td><span class="pm-value"><span class="pm-left">12.7</span><span class="pm-symbol">±</span><span class="pm-right">1.0%</span></span></td><td><span class="pm-value"><span class="pm-left">286.8</span><span class="pm-symbol">±</span><span class="pm-right">7.3</span></span></td><td><span class="pm-value"><span class="pm-left">57.8</span><span class="pm-symbol">±</span><span class="pm-right">5.4</span></span></td><td><span class="pm-value"><span class="pm-left">2.18</span><span class="pm-symbol">±</span><span class="pm-right">0.09</span></span></td><td>-5.3</td>
+              </tr>
+              <tr>
+                <td>Single Strategic Controller + Hierarchical Memory</td><td><span class="pm-value"><span class="pm-left">16.3</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">305.4</span><span class="pm-symbol">±</span><span class="pm-right">6.9</span></span></td><td><span class="pm-value"><span class="pm-left">61.1</span><span class="pm-symbol">±</span><span class="pm-right">5.0</span></span></td><td><span class="pm-value"><span class="pm-left">2.32</span><span class="pm-symbol">±</span><span class="pm-right">0.14</span></span></td><td>-1.9</td>
+              </tr>
+              <tr>
+                <td>Single Reactive Controller + Global Memory</td><td><span class="pm-value"><span class="pm-left">6.7</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">116.8</span><span class="pm-symbol">±</span><span class="pm-right">7.3</span></span></td><td><span class="pm-value"><span class="pm-left">28.8</span><span class="pm-symbol">±</span><span class="pm-right">3.4</span></span></td><td><span class="pm-value"><span class="pm-left">1.84</span><span class="pm-symbol">±</span><span class="pm-right">0.05</span></span></td><td>-11.3</td>
+              </tr>
+              <tr>
+                <td>Single Reactive Controller + Hierarchical Memory</td><td><span class="pm-value"><span class="pm-left">10.3</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">135.4</span><span class="pm-symbol">±</span><span class="pm-right">6.9</span></span></td><td><span class="pm-value"><span class="pm-left">33.1</span><span class="pm-symbol">±</span><span class="pm-right">3.9</span></span></td><td><span class="pm-value"><span class="pm-left">2.05</span><span class="pm-symbol">±</span><span class="pm-right">0.08</span></span></td><td>-7.7</td>
+              </tr>
+              <tr>
+                <td>Dual Controller + Global Memory</td><td><span class="pm-value"><span class="pm-left">12.3</span><span class="pm-symbol">±</span><span class="pm-right">1.0%</span></span></td><td><span class="pm-value"><span class="pm-left">154.5</span><span class="pm-symbol">±</span><span class="pm-right">4.9</span></span></td><td><span class="pm-value"><span class="pm-left">39.8</span><span class="pm-symbol">±</span><span class="pm-right">4.1</span></span></td><td><span class="pm-value"><span class="pm-left">1.98</span><span class="pm-symbol">±</span><span class="pm-right">0.12</span></span></td><td>-5.7</td>
+              </tr>
+              <tr class="table-group-row">
+                <td colspan="6">Component removals</td>
+              </tr>
+              <tr>
+                <td>w/o Event Trigger</td><td><span class="pm-value"><span class="pm-left">15.7</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">198.5</span><span class="pm-symbol">±</span><span class="pm-right">8.3</span></span></td><td><span class="pm-value"><span class="pm-left">39.4</span><span class="pm-symbol">±</span><span class="pm-right">5.8</span></span></td><td><span class="pm-value"><span class="pm-left">2.01</span><span class="pm-symbol">±</span><span class="pm-right">0.12</span></span></td><td>-2.3</td>
+              </tr>
+              <tr>
+                <td>w/o reactive override</td><td><span class="pm-value"><span class="pm-left">15.7</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">184.7</span><span class="pm-symbol">±</span><span class="pm-right">6.5</span></span></td><td><span class="pm-value"><span class="pm-left">49.4</span><span class="pm-symbol">±</span><span class="pm-right">4.8</span></span></td><td><span class="pm-value"><span class="pm-left">1.97</span><span class="pm-symbol">±</span><span class="pm-right">0.08</span></span></td><td>-2.3</td>
+              </tr>
+              <tr>
+                <td>w/o SA-MB</td><td><span class="pm-value"><span class="pm-left">15.0</span><span class="pm-symbol">±</span><span class="pm-right">1.0%</span></span></td><td><span class="pm-value"><span class="pm-left">160.3</span><span class="pm-symbol">±</span><span class="pm-right">6.1</span></span></td><td><span class="pm-value"><span class="pm-left">42.1</span><span class="pm-symbol">±</span><span class="pm-right">4.6</span></span></td><td><span class="pm-value"><span class="pm-left">2.10</span><span class="pm-symbol">±</span><span class="pm-right">0.12</span></span></td><td>-3.0</td>
+              </tr>
+              <tr>
+                <td>w/o SA-KG</td><td><span class="pm-value"><span class="pm-left">14.3</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">158.9</span><span class="pm-symbol">±</span><span class="pm-right">5.2</span></span></td><td><span class="pm-value"><span class="pm-left">40.8</span><span class="pm-symbol">±</span><span class="pm-right">4.4</span></span></td><td><span class="pm-value"><span class="pm-left">1.96</span><span class="pm-symbol">±</span><span class="pm-right">0.12</span></span></td><td>-3.7</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>Coming soon.</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>Website structure inspired by the <a href="https://ryanchenyn.github.io/projects/IVEBench/">IVEBench</a> project page.</p>
+            <p>Website source code based on the <a href="https://nerfies.github.io/">Nerfies</a> project page.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+
+
