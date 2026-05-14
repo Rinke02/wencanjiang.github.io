@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SPIKE: An Adaptive Dual Controller Framework for Cost-Efficient Long-Horizon Game Agents</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Varela+Round&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
@@ -26,7 +26,7 @@
           <h1 class="title is-1 publication-title">
             <span class="title-lockup">
               <img class="title-logo" src="./static/images/logo.png" alt="SPIKE logo">
-              <span>SPIKE</span>
+              <span class="title-spike">SPIKE</span>
             </span>
           </h1>
           <h2 class="title is-3 publication-subtitle">An Adaptive Dual Controller Framework for Cost-Efficient Long-Horizon Game Agents</h2>
@@ -36,7 +36,7 @@
               <a href="https://openreview.net/profile?id=~Wencan_Jiang1">Wencan Jiang</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href="https://zhangzjn.github.io/">Jiangning Zhang</a><sup>1</sup>,
+              <a href="https://zhangzjn.github.io/">Jiangning Zhang</a><sup class="corresponding-icon" title="Corresponding author"><i class="fas fa-envelope"></i></sup><sup>1</sup>,
             </span>
             <span class="author-block">
               <a href="https://jianbiaomei.github.io/">Jianbiao Mei</a><sup>1</sup>,
@@ -83,7 +83,7 @@
               </span>
               <span class="link-block">
                 <a href="https://github.com/Rinke02/SPIKE" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span class="icon"><img class="soul-link-icon" src="https://zhangzjn.github.io/projects/Soul/assets/images/icons8-github-100.png" alt="GitHub icon"></span>
                   <span>Code</span>
                 </a>
               </span>
@@ -100,7 +100,10 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-11">
-          <h3 class="title is-3">Highlights</h3>
+          <div class="intro-figure-wrap">
+            <img class="intro-figure" src="./static/images/teaser.png" alt="SPIKE teaser">
+          </div>
+          <h3 class="title is-3 overview-title">Highlights</h3>
           <div class="content overview-text">
             <ol class="highlights-list">
               <li><strong>Event-triggered amortized deliberation.</strong> Strategic reasoning is reused across stable local segments and reinvoked at visual, progress, repetition, or failure boundaries.</li>
@@ -108,9 +111,6 @@
               <li><strong>Controller-specific hierarchical memory.</strong> SPIKE separates State-Action Memory Bank retrieval for routine execution from State-Action Knowledge Graph evidence for replanning.</li>
               <li><strong>Better success-cost trade-off.</strong> On StarDojo Lite-100, SPIKE improves success over the strongest baseline while reducing tokens and latency.</li>
             </ol>
-          </div>
-          <div class="intro-figure-wrap">
-            <img class="intro-figure" src="./static/images/teaser.png" alt="SPIKE teaser">
           </div>
         </div>
       </div>
@@ -235,10 +235,6 @@
             <img src="./static/images/demo2.png" alt="Demo 2">
             <figcaption>Additional qualitative rollout showing long-horizon progress.</figcaption>
           </figure>
-          <figure class="demo-wide">
-            <img src="./static/images/failure_demo.png" alt="Failure demo">
-            <figcaption>Failure and recovery trace highlighting how SPIKE detects stagnation and replans.</figcaption>
-          </figure>
         </div>
 
         <h3 class="title is-3" style="margin-top: 3rem;">Main Result</h3>
@@ -324,63 +320,6 @@
           <div><strong>-54.9%</strong><span>Tokens versus CRADLE</span></div>
           <div><strong>-40.8%</strong><span>Latency versus CRADLE</span></div>
         </div>
-
-        <h3 class="title is-3" style="margin-top: 3rem;">Ablation Study</h3>
-        <p class="section-lead">
-          Framework-level and component ablations on Lite-100. Delta SR reports the absolute success-rate change relative to full SPIKE, isolating the effect of controller routing, event triggering, and memory design.
-        </p>
-        <div class="leaderboard-container">
-          <table class="leaderboard-table ablation-table">
-            <thead>
-              <tr>
-                <th>Variant</th>
-                <th>Lite-100 SR</th>
-                <th>Tokens / Task (k)</th>
-                <th>Latency / Step (s)</th>
-                <th>Recovery/Stuck Ratio</th>
-                <th>Delta SR</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="table-group-row">
-                <td colspan="6">Framework-level ladder</td>
-              </tr>
-              <tr class="ours">
-                <td>SPIKE (Full)</td><td><span class="pm-value"><span class="pm-left">18.0</span><span class="pm-symbol">±</span><span class="pm-right">1.7%</span></span></td><td><span class="pm-value"><span class="pm-left">168.1</span><span class="pm-symbol">±</span><span class="pm-right">5.7</span></span></td><td><span class="pm-value"><span class="pm-left">43.5</span><span class="pm-symbol">±</span><span class="pm-right">4.7</span></span></td><td><span class="pm-value"><span class="pm-left">2.75</span><span class="pm-symbol">±</span><span class="pm-right">0.12</span></span></td><td>0.0</td>
-              </tr>
-              <tr>
-                <td>Single Strategic Controller + Global Memory</td><td><span class="pm-value"><span class="pm-left">12.7</span><span class="pm-symbol">±</span><span class="pm-right">1.0%</span></span></td><td><span class="pm-value"><span class="pm-left">286.8</span><span class="pm-symbol">±</span><span class="pm-right">7.3</span></span></td><td><span class="pm-value"><span class="pm-left">57.8</span><span class="pm-symbol">±</span><span class="pm-right">5.4</span></span></td><td><span class="pm-value"><span class="pm-left">2.18</span><span class="pm-symbol">±</span><span class="pm-right">0.09</span></span></td><td>-5.3</td>
-              </tr>
-              <tr>
-                <td>Single Strategic Controller + Hierarchical Memory</td><td><span class="pm-value"><span class="pm-left">16.3</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">305.4</span><span class="pm-symbol">±</span><span class="pm-right">6.9</span></span></td><td><span class="pm-value"><span class="pm-left">61.1</span><span class="pm-symbol">±</span><span class="pm-right">5.0</span></span></td><td><span class="pm-value"><span class="pm-left">2.32</span><span class="pm-symbol">±</span><span class="pm-right">0.14</span></span></td><td>-1.9</td>
-              </tr>
-              <tr>
-                <td>Single Reactive Controller + Global Memory</td><td><span class="pm-value"><span class="pm-left">6.7</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">116.8</span><span class="pm-symbol">±</span><span class="pm-right">7.3</span></span></td><td><span class="pm-value"><span class="pm-left">28.8</span><span class="pm-symbol">±</span><span class="pm-right">3.4</span></span></td><td><span class="pm-value"><span class="pm-left">1.84</span><span class="pm-symbol">±</span><span class="pm-right">0.05</span></span></td><td>-11.3</td>
-              </tr>
-              <tr>
-                <td>Single Reactive Controller + Hierarchical Memory</td><td><span class="pm-value"><span class="pm-left">10.3</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">135.4</span><span class="pm-symbol">±</span><span class="pm-right">6.9</span></span></td><td><span class="pm-value"><span class="pm-left">33.1</span><span class="pm-symbol">±</span><span class="pm-right">3.9</span></span></td><td><span class="pm-value"><span class="pm-left">2.05</span><span class="pm-symbol">±</span><span class="pm-right">0.08</span></span></td><td>-7.7</td>
-              </tr>
-              <tr>
-                <td>Dual Controller + Global Memory</td><td><span class="pm-value"><span class="pm-left">12.3</span><span class="pm-symbol">±</span><span class="pm-right">1.0%</span></span></td><td><span class="pm-value"><span class="pm-left">154.5</span><span class="pm-symbol">±</span><span class="pm-right">4.9</span></span></td><td><span class="pm-value"><span class="pm-left">39.8</span><span class="pm-symbol">±</span><span class="pm-right">4.1</span></span></td><td><span class="pm-value"><span class="pm-left">1.98</span><span class="pm-symbol">±</span><span class="pm-right">0.12</span></span></td><td>-5.7</td>
-              </tr>
-              <tr class="table-group-row">
-                <td colspan="6">Component removals</td>
-              </tr>
-              <tr>
-                <td>w/o Event Trigger</td><td><span class="pm-value"><span class="pm-left">15.7</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">198.5</span><span class="pm-symbol">±</span><span class="pm-right">8.3</span></span></td><td><span class="pm-value"><span class="pm-left">39.4</span><span class="pm-symbol">±</span><span class="pm-right">5.8</span></span></td><td><span class="pm-value"><span class="pm-left">2.01</span><span class="pm-symbol">±</span><span class="pm-right">0.12</span></span></td><td>-2.3</td>
-              </tr>
-              <tr>
-                <td>w/o reactive override</td><td><span class="pm-value"><span class="pm-left">15.7</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">184.7</span><span class="pm-symbol">±</span><span class="pm-right">6.5</span></span></td><td><span class="pm-value"><span class="pm-left">49.4</span><span class="pm-symbol">±</span><span class="pm-right">4.8</span></span></td><td><span class="pm-value"><span class="pm-left">1.97</span><span class="pm-symbol">±</span><span class="pm-right">0.08</span></span></td><td>-2.3</td>
-              </tr>
-              <tr>
-                <td>w/o SA-MB</td><td><span class="pm-value"><span class="pm-left">15.0</span><span class="pm-symbol">±</span><span class="pm-right">1.0%</span></span></td><td><span class="pm-value"><span class="pm-left">160.3</span><span class="pm-symbol">±</span><span class="pm-right">6.1</span></span></td><td><span class="pm-value"><span class="pm-left">42.1</span><span class="pm-symbol">±</span><span class="pm-right">4.6</span></span></td><td><span class="pm-value"><span class="pm-left">2.10</span><span class="pm-symbol">±</span><span class="pm-right">0.12</span></span></td><td>-3.0</td>
-              </tr>
-              <tr>
-                <td>w/o SA-KG</td><td><span class="pm-value"><span class="pm-left">14.3</span><span class="pm-symbol">±</span><span class="pm-right">0.6%</span></span></td><td><span class="pm-value"><span class="pm-left">158.9</span><span class="pm-symbol">±</span><span class="pm-right">5.2</span></span></td><td><span class="pm-value"><span class="pm-left">40.8</span><span class="pm-symbol">±</span><span class="pm-right">4.4</span></span></td><td><span class="pm-value"><span class="pm-left">1.96</span><span class="pm-symbol">±</span><span class="pm-right">0.12</span></span></td><td>-3.7</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </div>
     </div>
   </div>
@@ -411,5 +350,3 @@
 
 </body>
 </html>
-
-
