@@ -526,3 +526,29 @@ h1, h2, h3, h4, h5, h6,
   vertical-align: middle;
 }
 
+.hero.teaser .overview-title,
+.section h1.title.is-1.mathvista_other,
+.section h1.title.is-1.mathvista_other .mathvista_other,
+.section h3.title.is-3,
+.section h4.title.is-4 {
+  font-family: "Varela Round", sans-serif !important;
+  color: #6fb7f7 !important;
+}
+
+.section h1.title.is-1.mathvista_other,
+.section h1.title.is-1.mathvista_other .mathvista_other {
+  font-size: 2.15rem !important;
+  line-height: 1.15;
+}
+
+.hero.teaser .overview-title,
+.section h3.title.is-3 {
+  font-size: 1.65rem !important;
+  line-height: 1.2;
+}
+
+.section h4.title.is-4 {
+  font-size: 1.25rem !important;
+  line-height: 1.25;
+}
+
