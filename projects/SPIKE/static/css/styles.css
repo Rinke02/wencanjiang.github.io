@@ -17,16 +17,18 @@
 }
 
 .title-lockup {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
+  position: relative;
+  display: inline-block;
+  overflow: visible;
 }
 
 .title-logo {
-  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
   height: clamp(3.1rem, 6vw, 5rem);
   width: auto;
+  transform: translate(calc(-100% - 0.6rem), -50%);
 }
 
 .publication-subtitle {
@@ -441,6 +443,11 @@ section img {
 
 .mathvista_other {
   font-family: "Google Sans", sans-serif;
+}
+
+.section h1.title.is-1.mathvista_other {
+  font-size: 2.45rem;
+  color: #6fb7f7;
 }
 
 .footer {
