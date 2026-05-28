@@ -33,7 +33,7 @@
 
 .publication-subtitle {
   font-family: "Google Sans", sans-serif;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.2;
   margin-top: 0.2rem !important;
 }
@@ -42,6 +42,11 @@
   font-family: "Google Sans", sans-serif;
   margin-top: 0.75rem;
   margin-bottom: 0.4rem;
+}
+
+.publication-authors:not(.publication-affiliations) a {
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
 }
 
 .publication-affiliations {
